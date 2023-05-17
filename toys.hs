@@ -30,26 +30,9 @@ zip' [] _ = []
 zip' (x:xs) (y:ys) = (x,y):zip' xs ys
 
 
-quicksort :: (Ord a) => [a] -> [a]
-quicksort [] = []
-quicksort (x:xs) =
-    let smallerSorted = quicksort [ a | a <- xs, a < x ]
-        biggerSorted = quicksort [ a | a <- xs, a >= x ]
-    in smallerSorted ++ [x] ++ biggerSorted
 
 flip' :: (a -> b -> c) -> b -> a -> c
 flip' f = g
     where g x y = f y x
 
 
-collatz :: (Integral a) => a -> [a]
-collatz 1 = [1]
-collatz n
-    | even n = n:collatz (n `div` 2)
-    | odd n = n:collatz (n*3 + 1)
-    
---collatz_me :: (Num a) => a -> [(a, a)]
-collatz_me x = zip [ length arr | arr <- map collatz [1..x] ] [1..x]
--- can run 
--- maximum (collatz_me x)
--- to find the maximum length of the collatz sequence
