@@ -36,3 +36,6 @@ flip' f = g
     where g x y = f y x
 
 
+isAscending [x] = True
+isAscending (x:y:xs) = if x < y then isAscending (y:xs) else False
+
